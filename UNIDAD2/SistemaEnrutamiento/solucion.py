@@ -1,13 +1,23 @@
 import random
 import numpy as np
-from typing import List, Tuple
 from funcionDeCosto import TipoSolucion
-from distancia import encontrar_cd_mas_cercano 
 
 # definimos numero de nodos, CD y tiendas
 NUMERO_TOTAL_DE_NODOS = 100
 NUMERO_DE_CDS = 10
 NUMERO_DE_TIENDAS = 90
+
+
+def encontrar_cd_mas_cercano(
+    indice_tienda: int,
+    matriz_de_distancias: np.ndarray,
+    indices_cds: list[int],
+) -> int:
+    """Devuelve el CD con menor distancia registrada para una tienda."""
+    distancias_a_los_cds = matriz_de_distancias[indice_tienda, indices_cds]
+    indice_local_cd_cercano = int(np.argmin(distancias_a_los_cds))
+    return indices_cds[indice_local_cd_cercano]
+
 
 # funcion para crear una solucion inicial
 def crear_solucion_inicial(matriz_de_distancias: np.ndarray) -> TipoSolucion:
@@ -35,9 +45,10 @@ def crear_solucion_inicial(matriz_de_distancias: np.ndarray) -> TipoSolucion:
         
     return solucion_formateada
 
-def generar_solucion_vecina(solucion_actual: TipoSolucion, matriz_de_distancias: np.ndarray) -> TipoSolucion:
+def generar_solucion_vecina(solucion_actual: TipoSolucion, _matriz_de_distancias: np.ndarray) -> TipoSolucion:
     # generar una solucion vecina haciendo un swap de dos tiendas en una ruta aleatoria
 
+    _ = _matriz_de_distancias
     nueva_solucion_vecina = [list(ruta) for ruta in solucion_actual] # copia de la solucion actual
     
     # seleccionar una ruta aleatoria

@@ -17,10 +17,10 @@ ARCHIVO_MAPA_BASE = DIRECTORIO_PROYECTO / "mapa_geoespacial_actualizado.html"
 NOMBRE_ARCHIVO_SALIDA_HTML = DIRECTORIO_PROYECTO / "mapa_rutas_optimizadas.html"
 
 # parametros del recocido simulado
-TEMPERATURA_INICIAL = 200.0
+TEMPERATURA_INICIAL = 1000.0 
 TEMPERATURA_FINAL = 0.1
 FACTOR_DE_ENFRIAMIENTO = 0.98
-NUMERO_DE_ITERACIONES_POR_TEMPERATURA = 300 
+NUMERO_DE_ITERACIONES_POR_TEMPERATURA = 500
 
 def _coordenadas_del_mapa_base(contenido_html: str) -> tuple[str, list[tuple[float, float]]]:
     variable_mapa = re.search(r"var (map_[A-Za-z0-9_]+) = L\.map", contenido_html)
